@@ -35,7 +35,13 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : '0');
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if (winner){
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : '0');
+    }
 
     return (
       <div>
@@ -83,7 +89,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-function calculateWinnder(squares) {
+function calculateWinner(squares) {
   const lines = [
     [0,1,2],
     [3,4,5],
